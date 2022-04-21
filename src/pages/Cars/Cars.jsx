@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect,} from "react";
 import {
   Button,
   Card,
@@ -12,28 +12,18 @@ import FormPencarian from "./../../components/FormPencarian/FormPencarian";
 import iconuser from "../../assets/images/fi_users.png";
 import iconsettings from "../../assets/images/fi_settings.png";
 import iconcalendar from "../../assets/images/fi_calendar.png";
-import axios from "axios";
 import { useParams } from "react-router-dom";
+import { getCar } from "../../redux/action/carAction";
+import { useSelector, useDispatch } from "react-redux";
 
 function Cars() {
-  const [dataList, setDataList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+  const {isLoading, data:searchData} = useSelector((state) => state.carID)
   const { id } = useParams("id", null);
-  const getDataId = async (id) => {
-    try {
-      const res = await axios.get(
-        `https://rent-cars-api.herokuapp.com/admin/car/${id}`
-      );
-      setDataList(res.data);
-      setIsLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    setIsLoading(true);
-    getDataId(id);
-  }, [id]);
+
+  useEffect(()=>{
+    dispatch(getCar(id));
+  },[id])
   return (
     <Fragment>
       <Container
@@ -110,7 +100,7 @@ function Cars() {
               {isLoading ? (
                 <div>Loading...</div>
               ) : (
-                <img alt="Cardimagecap" src={dataList.image} width="100%" />
+                <img alt="Cardimagecap" src={searchData.image} width="100%" />
               )}
               <CardTitle tag="h5">Nama/Tipe Mobil</CardTitle>
               <CardText>
@@ -120,7 +110,7 @@ function Cars() {
               </CardText>
               <div className="d-flex justify-content-between">
                 <p>Total</p>
-                <h6>Rp.{dataList.price}</h6>
+                <h6>Rp.{searchData.price}</h6>
               </div>
               <Button>Lanjutkan Pembayaran</Button>
             </Card>

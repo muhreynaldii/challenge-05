@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
   function FormPencarian() {
     const navigate = useNavigate();
+
     const handleclick = () => {
       navigate('/search')
     }

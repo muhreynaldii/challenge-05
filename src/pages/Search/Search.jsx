@@ -1,28 +1,19 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect} from "react";
 import { Container } from "reactstrap";
 import CardCars from "../../components/Card/CardCars";
 import FormPencarian from "./../../components/FormPencarian/FormPencarian";
-import axios from "axios";
+import { getSearch } from "../../redux/action/searchAction";
+import { useSelector, useDispatch } from "react-redux";
 
 function Search() {
-  const [dataList, setDataList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const getData = async () => {
-    try {
-      const res = await axios.get(
-        "https://rent-cars-api.herokuapp.com/admin/car"
-      );
-      setDataList(res.data);
-      setIsLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    setIsLoading(true);
-    getData();
-  }, []);
+  const dispatch = useDispatch();
+  const {isLoading, data:searchData} = useSelector((state) => state.searchData)
+
+  useEffect(()=>{
+    dispatch(getSearch());
+  },[])
+
   return (
     <Fragment>
       <Container
@@ -35,7 +26,7 @@ function Search() {
           <div>Loading...</div>
         ) : (
           <div style={{ display: "flex", flexWrap: "wrap" }}>
-            {dataList?.map((item) => {
+            {searchData?.map((item) => {
               return (
                 <div className="m-2">
                   <CardCars

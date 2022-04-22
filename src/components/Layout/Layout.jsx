@@ -1,16 +1,16 @@
-import React from 'react';
-import Navigationbar from './../Navigationbar/Navigationbar';
-import { Outlet } from 'react-router-dom';
-import Footer from './../Footer/Footer';
+import React from "react";
+import Navigationbar from "./../Navigationbar/Navigationbar";
+import { Outlet } from "react-router-dom";
+import Footer from "./../Footer/Footer";
 
 function Layout() {
   return (
     <>
-      <Navigationbar/>
+      <Navigationbar />
       <div>
-          <Outlet/>
-      <Footer/>
-    </div>
+        <Outlet />
+        <Footer />
+      </div>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect,} from "react";
+import React, { Fragment, useEffect } from "react";
 import {
   Button,
   Card,
@@ -18,12 +18,12 @@ import { useSelector, useDispatch } from "react-redux";
 
 function Cars() {
   const dispatch = useDispatch();
-  const {isLoading, data:searchData} = useSelector((state) => state.carID)
+  const { isLoading, data: searchData } = useSelector((state) => state.carID);
   const { id } = useParams("id", null);
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getCar(id));
-  },[id])
+  }, [id]);
   return (
     <Fragment>
       <Container
@@ -34,14 +34,18 @@ function Cars() {
       <Container>
         <Row>
           <Col
+            xs={{
+              size: 12,
+            }}
+            lg={{
+              size: 7,
+            }}
             style={{
               boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)",
               borderRadius: "8px",
+              marginTop: "20px",
             }}
             className="border"
-            xs={{
-              size: 7,
-            }}
           >
             <h6>Tentang Paket</h6>
             <p>Include</p>
@@ -86,6 +90,10 @@ function Cars() {
           </Col>
           <Col
             xs={{
+              offset: 1,
+              size: 10,
+            }}
+            lg={{
               size: 4,
               offset: 1,
             }}
@@ -95,6 +103,7 @@ function Cars() {
               style={{
                 boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)",
                 borderRadius: "8px",
+                marginTop: "20px",
               }}
             >
               {isLoading ? (
@@ -116,7 +125,7 @@ function Cars() {
             </Card>
           </Col>
         </Row>
-        <div className="mt-5 d-flex justify-content-center">
+        <div className="mt-5 d-flex justify-content-center button-pembayaran">
           <Button>Lanjutkan Pembayaran</Button>
         </div>
       </Container>

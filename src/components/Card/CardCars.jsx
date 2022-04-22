@@ -17,7 +17,7 @@ function CardCars({ id, name, image, price }) {
       >
         <img alt="Cardimagecap" src={image} width="100%" />
         <CardTitle tag="h5">{name}</CardTitle>
-        <h4 >Rp.{price}</h4>
+        <h4>Rp.{price}</h4>
         <CardText>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -40,14 +40,3 @@ function CardCars({ id, name, image, price }) {
 }
 
 export default CardCars;
-//
-// onClick={() => dispatch(savePostByID(item))}
-
-// export const savePostByID = (action) => {
-//   return (dispatch) => {
-//     dispatch({
-//       type: `${GET_POST_BY_ID}_FULFILLED`,
-//       payload: action,
-//     });
-//   };
-// };

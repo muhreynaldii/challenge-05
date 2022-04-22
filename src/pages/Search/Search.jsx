@@ -13,7 +13,7 @@ function Search() {
 
   useEffect(() => {
     dispatch(getSearch());
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Fragment>

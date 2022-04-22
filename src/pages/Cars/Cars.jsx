@@ -23,7 +23,7 @@ function Cars() {
 
   useEffect(() => {
     dispatch(getCar(id));
-  }, [id]);
+  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <Fragment>
       <Container
